@@ -12,6 +12,9 @@ class Generator:
         # g/L
         self.fuel_density = fuel_density
 
+        self.reset()
+
+    def reset(self):
         self.remaining_tank = self.tank_capacity
 
     def get_weight(self):

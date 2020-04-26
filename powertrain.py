@@ -35,8 +35,11 @@ class Powertrain:
         self.number_of_motors = number_of_motors
 
     def instantaneous_power(self, thrust):
+        """return power required (in Watts) to produce the desired thrust
+        (in grams)"""
         return self.number_of_motors * \
-            self.motor.thrust_to_power_model.y_to_x(thrust / self.number_of_motors)
+            self.motor.thrust_to_power_model.y_to_x(
+                thrust / self.number_of_motors)
 
     def instantaneous_thrust(self, power):
         return self.number_of_motors * \
