@@ -14,7 +14,7 @@ MIN_BATTERY_PERCENTAGE = 15
 LIPO_CELL_VOLTAGE = 3.7
 DT = 0.5
 
-TANK_CAPACITY=8 #L
+TANK_CAPACITY=6 #L
 FUEL_DENSITY=780 # g/L
 FUEL_CONSUMPTION_RATE=750 #g/kW * h
 MAX_GENERATE_POWER=5000 #W
@@ -79,7 +79,6 @@ sim_drone = drone.Drone(
     nist_payload_weight=NIST_PAYLOAD_WEIGHT
 )
 
-
 time = 0
 while True:
     step_info = sim_drone.run_step(DT)
@@ -100,7 +99,20 @@ while True:
         "  |  {battery_power:.1f} W from battery" \
         "  |  {generator_power:.1f} W from generator" \
         "  |  {fuel_remaining:.1f} L fuel remaining"
+
     time += DT
+
+    # formatted = print_format.format(
+    #     time=time,
+    #     remaining_capacity=sim_drone.battery_bank.get_remaining_capacity(),
+    #     charge_percentage=sim_drone.battery_bank.get_charge_percentage(),
+    #     power_draw=step_info['total_power_draw'],
+    #     weight=sim_drone.get_weight() / 1000,
+    #     thrust=step_info['thrust'] / 1000,
+    #     battery_power=step_info['battery_power_draw'],
+    #     generator_power=step_info['generator_power_draw'],
+    #     fuel_remaining=sim_drone.generator.remaining_tank
+    # )
 
     formatted = print_format.format(
         hours=hours,
@@ -116,4 +128,3 @@ while True:
         fuel_remaining=sim_drone.generator.remaining_tank
     )
     print(formatted)
-
