@@ -20,7 +20,7 @@ class Drone:
         weight = self.get_weight()
         thrust = 1.3 * weight
 
-        power_draw = self.powertrain.instantaneous_power(weight)
+        power_draw = self.powertrain.instantaneous_power(thrust)
         generator_power = self.generator.generate(power_draw, dt)
 
         battery_power_draw = power_draw - generator_power
